@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla</title>
+</head>
+<body>
+    <h1>
+        Hola Alumnos Django... {{nombre_persona}} {{apellido_persona}}
+    </h1>
+    <p>
+        {{nombre_persona}} {{apellido_persona}} la hora es {{fecha_actual.day}}/{{fecha_actual.month}}/{{fecha_actual.year}}
+    </p>
+    <h2>
+        <strong>Temas del Curso:</strong>
+    </h2>
+    <p>
+        <ul>
+            {% if temas %}
+                {% for elTema in temas %}
+                    <li>{{elTema}}</li>
+                {% endfor %}
+            {% else %}
+                <p>No hay Temas que mostrar.</p>
+            {% endif %}
+        </ul>
+    </p>
+</body>
+</html>
