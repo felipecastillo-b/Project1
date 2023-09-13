@@ -19,11 +19,13 @@ from Project1.views import saludo
 from Project1.views import despedida
 from Project1.views import dameFecha
 from Project1.views import calcularEdad
+from Project1.views import formularioNotas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludo/', saludo),
     path('despedida/', despedida),
     path('fecha/', dameFecha),
-    path('calculoedad/<int:edad>/<int:anho>', calcularEdad)
+    path('calculoedad/<int:edad>/<int:anho>', calcularEdad),
+    path('formulario/', formularioNotas)
 ]

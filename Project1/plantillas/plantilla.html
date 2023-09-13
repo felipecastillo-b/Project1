@@ -7,10 +7,17 @@
 </head>
 <body>
     <h1>
-        Hola Alumnos Django... {{nombre_persona}} {{apellido_persona}}
+        Primera plantilla Django...
     </h1>
+
+    {% if nombre_persona == "Carlos Salvador" %}
     <p>
-        {{nombre_persona}} {{apellido_persona}} la hora es {{fecha_actual.day}}/{{fecha_actual.month}}/{{fecha_actual.year}}
+        La clase esta impartida por {{nombre_persona}} {{apellido_persona}}.
+    </p>
+    {% endif %}
+
+    <p>
+        Bienvenido Usuario... {{nombre_persona}} {{apellido_persona}} la hora es {{fecha_actual.day}}/{{fecha_actual.month}}/{{fecha_actual.year}}
     </p>
     <h2>
         <strong>Temas del Curso:</strong>

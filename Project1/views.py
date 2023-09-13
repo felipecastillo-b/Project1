@@ -10,13 +10,13 @@ class Person(object):
 
 def saludo(request):
 
-    p1 = Person("Felipe D'alesandro", "Castillo Barraza")
+    p1 = Person("Carlos Salvador", "Bilardo")
 #    nombre = "Felipe"
 #    apellido = "Castillo"
     ahora=datetime.datetime.now()
     temas_curso = ["Plantillas", "Modelos", "Formularios", "Vistas", "Despliegue"]
 
-    doc_externo = open("C:/Users/felip/OneDrive/Documentos/.django/Proyectos_Django/Project1/Project1/plantillas/plantilla.html")
+    doc_externo = open("C:/Users/Usuario_2/Documents/FELIPE/workspace/.Proyectos_Django/Project1/Project1/plantillas/plantilla.html")
 
     plt = Template(doc_externo.read())
 
@@ -66,3 +66,17 @@ def calcularEdad(request, edad, anho):
     </html>""" %(anho, edadFutura) 
 
     return HttpResponse(document)
+
+def formularioNotas(request):
+
+    doc_externo = open("C:/Users/Usuario_2/Documents/FELIPE/workspace/.Proyectos_Django/Project1/Project1/plantillas/formulario.html")
+
+    plt = Template(doc_externo.read())
+
+    doc_externo.close()
+
+    ctx = Context()
+
+    documento = plt.render(ctx)
+
+    return HttpResponse(documento)
