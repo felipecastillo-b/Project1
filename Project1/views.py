@@ -16,7 +16,7 @@ def saludo(request):
     ahora=datetime.datetime.now()
     temas_curso = ["Plantillas", "Modelos", "Formularios", "Vistas", "Despliegue"]
 
-    doc_externo = open("C:/Users/Usuario_2/Documents/FELIPE/workspace/.Proyectos_Django/Project1/Project1/plantillas/plantilla.html")
+    doc_externo = open("./Project1/plantillas/plantilla.html")
 
     plt = Template(doc_externo.read())
 
