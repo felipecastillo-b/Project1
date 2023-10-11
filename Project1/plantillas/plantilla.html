@@ -6,18 +6,25 @@
     <title>Plantilla</title>
 </head>
 <body>
-    <h1>
+
+    {% include "superior/barra.html" %}
+
+    <h2>
         Primera plantilla Django...
-    </h1>
+    </h2>
 
     {% if nombre_persona == "Carlos Salvador" %}
     <p>
-        La clase esta impartida por {{nombre_persona}} {{apellido_persona}}.
+        El curso lo imparte el Profesor Titular: {{nombre_persona.upper}} {{apellido_persona.upper}}.
+    </p>
+    {% else %}
+    <p>
+        El curso lo imparte el Profesor suplente: {{nombre_persona.upper}} {{apellido_persona.upper}}.
     </p>
     {% endif %}
 
     <p>
-        Bienvenido Usuario... {{nombre_persona}} {{apellido_persona}} la hora es {{fecha_actual.day}}/{{fecha_actual.month}}/{{fecha_actual.year}}
+        Estamos viendo el tema de las plantillas a dia:  {{fecha_actual.day}}/{{fecha_actual.month}}/{{fecha_actual.year}}
     </p>
     <h2>
         <strong>Temas del Curso:</strong>

@@ -1,6 +1,10 @@
 from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
+from django.shortcuts import render
+from .forms import formularioAlumno
+from django.views.decorators.csrf import csrf_exempt
+from django.template.loader import get_template
 
 class Person(object):
 
@@ -15,23 +19,21 @@ def saludo(request):
 #    apellido = "Castillo"
     ahora=datetime.datetime.now()
     temas_curso = ["Plantillas", "Modelos", "Formularios", "Vistas", "Despliegue"]
+#    doc_externo = open("./Project1/plantillas/plantilla.html")
+#    plt = Template(doc_externo.read())
+#    doc_externo.close()
+#    ctx = Context({
+#        "nombre_persona": p1.nombre,
+#        "apellido_persona": p1.apellido,
+#        "fecha_actual": ahora,
+#        "temas": temas_curso
+#        })
 
-    doc_externo = open("./Project1/plantillas/plantilla.html")
+#    doc_externo = get_template("plantilla.html")
 
-    plt = Template(doc_externo.read())
+#    documento = doc_externo.render({"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "fecha_actual": ahora, "temas": temas_curso})
 
-    doc_externo.close()
-
-    ctx = Context({
-        "nombre_persona": p1.nombre,
-        "apellido_persona": p1.apellido,
-        "fecha_actual": ahora,
-        "temas": temas_curso
-        })
-
-    documento = plt.render(ctx)
-
-    return HttpResponse(documento)
+    return render(request, "plantilla.html", {"nombre_persona":p1.nombre, "apellido_persona":p1.apellido, "fecha_actual": ahora, "temas": temas_curso})
 
 def despedida(request):
         
@@ -67,16 +69,22 @@ def calcularEdad(request, edad, anho):
 
     return HttpResponse(document)
 
+@csrf_exempt
 def formularioNotas(request):
 
-    doc_externo = open("C:/Users/Usuario_2/Documents/FELIPE/workspace/.Proyectos_Django/Project1/Project1/plantillas/formulario.html")
-
+    doc_externo = open("./Project1/plantillas/formulario.html")
     plt = Template(doc_externo.read())
-
     doc_externo.close()
-
     ctx = Context()
-
     documento = plt.render(ctx)
-
     return HttpResponse(documento)
+
+def informe(request):
+    mensaje="datos: %r" % request.POST['nombre']
+    return HttpResponse(mensaje)
+
+def cursoC(request):
+
+    fecha_actual=datetime.datetime.now()
+
+    return render(request, "CursoC.html", {"dameFecha": fecha_actual})
