@@ -2,7 +2,6 @@ from django.http import HttpResponse
 import datetime
 from django.template import Template, Context
 from django.shortcuts import render
-from .forms import formularioAlumno
 from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import get_template
 
@@ -72,16 +71,26 @@ def calcularEdad(request, edad, anho):
 @csrf_exempt
 def formularioNotas(request):
 
-    doc_externo = open("./Project1/plantillas/formulario.html")
-    plt = Template(doc_externo.read())
-    doc_externo.close()
-    ctx = Context()
-    documento = plt.render(ctx)
-    return HttpResponse(documento)
+    return render(request, 'formulario.html')
 
+@csrf_exempt
 def informe(request):
-    mensaje="datos: %r" % request.POST['nombre']
-    return HttpResponse(mensaje)
+
+    inf_nombre = str(request.POST['nombre'])
+    inf_run = str(request.POST['run'])
+    inf_carrera = str(request.POST['carrera'])
+    inf_modulo = str(request.POST['modulo'])
+
+    inf_nota1 = float (request.POST['nota1'])
+    inf_nota2 = float (request.POST['nota2'])
+    inf_nota3 = float (request.POST['nota3'])
+    inf_nota4 = float (request.POST['nota4'])
+    inf_nota5 = float (request.POST['nota5'])
+    inf_nota6 = float (request.POST['nota6'])
+
+    inf_promedio = round((inf_nota1*0.15)+(inf_nota2*0.15)+(inf_nota3*0.2)+(inf_nota4*0.2)+(inf_nota5*0.15)+(inf_nota6*0.15), 1)
+
+    return render(request, "informe.html", {"inf_nota1": inf_nota1, "inf_nota2": inf_nota2, "inf_nota3": inf_nota3, "inf_nota4": inf_nota4, "inf_nota5": inf_nota5, "inf_nota6": inf_nota6, "inf_promedio": inf_promedio, "inf_nombre": inf_nombre, "inf_run": inf_run, "inf_carrera": inf_carrera, "inf_modulo": inf_modulo,})
 
 def cursoC(request):
 
